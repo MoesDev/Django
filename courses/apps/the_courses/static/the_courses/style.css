@@ -1,0 +1,25 @@
+#top{
+	display: block;
+	margin: 15px;
+}
+	#top label{
+		display: block;
+	}
+	#top label span{
+		color: red;
+	}
+	#submit{
+		background-color: green;
+	}
+#course_box{
+	display: block;
+	margin: 15px;
+}
+	#course_box th{
+		padding: 3px 10px;
+		border: 2px solid black;
+	}
+	#course_box td{
+		padding: 3px 10px;
+		border: 1px solid black;
+	}

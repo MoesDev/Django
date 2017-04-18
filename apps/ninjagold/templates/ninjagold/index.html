@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'ninjagold/css/style.css'%}">
+	</head>
+	<body>
+		<div id="wrapper">
+			<h2>Your Gold: {{request.session.gold}}</h2>
+			<div class="locs">
+				<h2>Farm</h2>
+				<h4>(Earn 10-20 golds)</h4>
+												<!-- <form action="/farm" name="farm"> -->
+		
+					<form action="/process" method="POST">
+						{% csrf_token %}
+						<input type="hidden" name="action" value="farm" />
+			
+	  					<input type="submit" value="Find Gold"/>
+					</form>
+
+			</div>
+			<div class="locs">
+				<h2>Cave</h2>
+				<h4>(Earn 5-10 golds)</h4>
+															<!-- <form action="/cave"> -->
+				
+				<form action="/process" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="action" value="cave" />
+  					<input type="submit" value="Find Gold!"/>
+				</form>
+
+			</div>
+			<div class="locs">
+				<h2>House</h2>
+				<h4>(Earn 2-5 golds)</h4>
+															<!-- <form action="/house"> -->
+				
+				<form action="/process" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="action" value="house" />
+  					<input type="submit" value="Find Gold!"/>
+				</form>
+
+			</div>
+			<div class="locs">
+				<h2>Casino</h2>
+				<h4>(Earn or lose 0-50 golds)</h4>
+															<!-- <form action="/casino"> -->
+				<form action="/process" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="action" value="casino"/>
+  					<input type="submit" value="Find Gold!"/>
+				</form>
+
+			</div>
+			<div>
+				<h5>Your recent results</h5>
+				{% for i in request.session.result reversed%}
+					{% if "Loss of" in i %}
+						<p class="red">{{i}}</p>
+					{% else %}
+						<p class="green">{{i}}</p>
+					{% endif %}
+
+				{%endfor%}
+				
+			</div>
+		</div>
+
+	</body>
+</html>

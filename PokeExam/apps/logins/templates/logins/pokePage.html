@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Successful Login</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{%static 'logins/css/style_success.css'%}">
+</head>
+<body>
+	<a href="{% url 'logins:signout' %}">Log Out</a>
+
+	<h1>Welcome, {{signedIn.alias}}</h1>
+	{% if countFriends == 1 %}
+		<h3>{{countFriends}} person poked you!</h3>
+	{% endif %}
+
+	{% if countFriends != 1 %}
+		<h3>{{countFriends}} people poked you!</h3>
+	{% endif %}
+	
+	<div id="friendsThatPoked">
+		{% for friendP in friendPs %}
+			<p>{{friendP.poker.alias}} poked you {{friendP.friendPokes}} times</p>
+		{% endfor %}
+
+	</div>
+	<p>People you may want to poke: </p>
+	<div id= "usersTable">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Alias</th>
+					<th>Email Address</th>
+					<th>Poke History</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for user in users%}
+				{% if user.id != signedIn.id %}
+				<tr>
+					<td>{{user.name}}</td>
+					<td>{{user.alias}}</td>
+					<td>{{user.email}}</td>
+					<td>{{user.pokes}} pokes</td>
+					<td><a id="pokeBtn" href="{% url 'logins:pokes' id=user.id %}">Poke!</a></td>
+				</tr>
+				{% endif %}
+			{% endfor %}
+
+			</tbody>
+		</table>
+
+	</div>
+
+	<p></p>
+	<p>**************************************</p>
+	<h4>{{signedIn.alias}}, to remove your account:</h4>
+	<p>The link below will delete your account in one click.</p>
+	<a href="{% url 'logins:delete' id=signedIn.id %}">Delete Your Account</a>
+
+
+</body>
+</html>

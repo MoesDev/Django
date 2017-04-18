@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>The Wall</title>
+	<meta charset = "utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'wall/css/style.css' %}">
+</head>
+<body>
+
+	<div id= "top_box">
+		<h2>Coding Dojo Wall</h2>
+		<h4>Welcome "User's Name"</h4>
+		<a href="/">log off</a>
+		<p> (Currently not active for login/logout and users)</p>
+	</div>
+	<div id= "post_message_box">
+		<form action="/process/message" method="POST">
+			{% csrf_token %}
+			<input type="hidden" name="hidden" value="message">
+			<label for="mess_box">Post a message
+			<textarea id= "mess_box" row="4" name="message" placeholder="Enter message here..."></textarea></label>
+			<input type="submit" value="Post a message">
+		</form>
+	</div>
+	<div id= "messages_box">
+		{% for message in messages %}
+			<h5>{{ message.created_at }}</h5>
+			<p class="message">{{ message.message }}</p>
+
+			{% for comment in message.comment_set.all %}
+				<h6>{{ comment.created_at }}</h6>
+				<p class="comment">{{ comment.comment }}</p>
+			{% endfor %}
+			
+			<form action="process/comment/{{message.id}}" method="POST">
+				{% csrf_token %}
+				<label for="comment">Post a Comment: <textarea id="comment" name="comment" row="3"></textarea></label>
+				
+				<input type="submit" value="Comment">
+			</form>
+		{% endfor %}
+</div>
+
+</body>
+</html>

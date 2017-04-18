@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>Random</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#box{
+			margin: 30px auto;
+			width: 500px;
+		}
+		#rw_box{
+			margin: 30px auto;
+		
+			border: 1px solid black;
+			padding: 10px;
+		}
+		form{
+			margin: 30px auto;
+			text-align: center;
+		}
+		input{
+			padding: 5px;
+			width: 150px;
+			text-align: center;
+			box-shadow: 3px 2px;
+		}
+		p {
+			padding: 5px auto;
+			margin: 5px auto;
+			text-align: center;
+		}
+		h3{
+			margin: 5px auto;
+			padding: 10px;
+			border: 1px solid black;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+		<p>Random Word (attempt #{{request.session.count}})</p>
+		<div id="rw_box">
+			<h3>{{random_string}}</h3>
+		</div>
+
+		<form action="/generate" method="POST">
+			{% csrf_token %}
+			<input type="submit" value="Generate">
+		</form>
+
+	</div>
+
+</body>
+</html>

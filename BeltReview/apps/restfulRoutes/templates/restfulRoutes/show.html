@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product{{products.name}}</title>
+</head>
+<body>
+	<a href="/">Home</a><a href="/">Logout</a>
+	<h1>{{books.bookTitle}}</h1>
+	<h2>{{books.author}}</h2>
+	
+	<div id="left_book_box">
+		<h3>Reviews: </h3>
+		{% for review in reviews %}
+			<h4>Ratings: {{review.stars}}</h4>
+			<h4>{{review.user_comment.firstName}} says: </h4>
+			<p>{{review.review}}</p>
+			<h5>{{review.created_at}}</h5>
+		{% endfor %}
+	</div>
+
+	<div id="right_book_box">
+		<h2>Box for review Post</h2>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title>Results</title>
+	<style type="text/css">
+		.info_box{
+			border: 1px solid black;
+			width: 400px;
+			margin: 20px;
+			padding: 5px 25px;
+			border: 1px solid black;
+		}
+		h4{
+			text-decoration: underline;
+			font-weight: bold;
+		}
+		.inner_info{
+			display: block;
+			padding: 0px;
+			margin: 0px;
+			border: none;
+		}
+		.inner_info p{
+			display: inline-block;
+			padding: 0px;
+			margin: 5px;
+		}
+		.inner_info h5{
+			display: inline-block;
+			width: 150px;
+			margin: 5px;
+		}
+		#submit{
+			display: block;
+			background-color: #009AC7;
+			color: white;
+			box-shadow: 4px 3px;
+			text-align: right;
+			margin: 30px 10px 5px 270px;
+			width: 100px;
+			text-align: center;
+		}
+		#alert{
+			background-color: #A4E9A2;
+		}
+	</style>
+</head>
+<body>
+	<div id="alert" class="info_box">
+		<h3>Thanks for submitting this form! You have submitted this form  {{request.session.count}} times now.</h3>
+	</div>
+	<div class="info_box">
+		<h4>Submitted Information :</h4>
+		<div class="inner_info">
+		<h5>Name: </h5><p>{{request.session.name}}</p>
+		</div>	
+		<div class="inner_info">
+		<h5>Dojo Location:</h5><p>{{request.session.location}}</p>
+		</div>	
+		<div class="inner_info">
+		<h5>Favorite Language: </h5><p>{{request.session.language}}</p>
+		</div>	
+		<div class="inner_info">
+		<h5>Comment: </h5><p>{{request.session.comment}}</p>
+		</div>
+		<form action="/">
+			<input id="submit" type="submit" value="Go Back">
+		</form>	
+	</div>
+</body>
+</html>

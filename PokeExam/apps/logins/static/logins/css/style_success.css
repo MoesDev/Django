@@ -1,0 +1,30 @@
+h3{
+	color: green;
+}
+table{
+	margin: 20px;
+	border: 2px solid black;
+}
+	thead{
+		background-color: gray;
+	}
+	tr{
+		border:1px solid gray;
+	}
+		th{
+			padding: 10px;
+		}
+		td{
+			padding: 10px;
+		}
+
+#pokeBtn{
+	border: 1px solid black;
+	box-shadow: 3px 3px;
+	padding:2px;
+}
+
+#friendsThatPoked{
+	border: 1px solid black;
+	width: 500px;
+}

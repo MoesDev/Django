@@ -1,0 +1,15 @@
+.locs{
+	border: solid black 2px;
+	display: inline-block;
+}
+#wrapper{
+	width: 900px;
+}
+.red{
+	color: red;
+
+}
+.green{
+	color: green;
+
+}

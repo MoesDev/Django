@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>Survey Form</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#box{
+			margin: 20px 40px;
+			padding: 15px;
+			border: 1px solid black;
+			width: 300px;
+			text-align: right;
+		}
+		#submit{
+			display: block;
+			background-color: #009AC7;
+			color: white;
+			box-shadow: 2px 3px;
+			text-align: right;
+			margin: 10px 5px 10px 170px;
+			width: 100px;
+			text-align: center;
+		}
+		label{
+			display: block;
+			text-align: left;
+		}
+		select {
+			text-align: right;
+		}
+		textarea{
+			display: block;
+			width: 280px;	
+		}
+
+	</style>
+</head>
+<body>
+	<div id="box">
+		<form action="/surveys/process" method="POST">
+			 {% csrf_token %}
+			<label>Your Name: </label><input name="name" type="text">
+			<label>Dojo Location: </label>
+				<select name="location">
+					<option>Mountain View</option>
+					<option>Dallas</option>
+					<option>Chicago</option>
+					<option>Somewhere Else</option>
+				</select>
+			<label>Favorite Language: </label>
+				<select name="language">
+					<option>Javascript</option>
+					<option>Django</option>
+					<option>Python</option>
+					<option>jQuery</option>
+				</select>
+			<label>Comment (optional): </label>
+			<textarea name="comment" row="5"></textarea>
+			<input id="submit" type="submit" value="Submit">
+		</form>
+	</div>
+
+</body>
+</html>

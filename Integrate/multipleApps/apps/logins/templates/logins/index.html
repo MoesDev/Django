@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Login and Registration</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{%static 'logins/css/style_index.css'%}">
+</head>
+<body>
+	<div id="registration">
+		<h2>Registration</h2>
+		<form action="{% url 'login:register' %}" method="post">
+			{% csrf_token %}
+			<label>First Name:<input name="f_name" type="text" value="{{request.session.fname}}"></label>
+			<label>Last Name:<input name="l_name" type="text" value="{{request.session.lname}}"></label>
+			<label>Email: <input name="reg_email" type="text" value="{{request.session.valEmail}}"></label>
+			<label>Password: <input name="reg_pw" type="password"></label>
+			<label>Confirm PW:<input name="conf_reg_pw" type="password"></label>
+			<input id="reg_submit" type="submit" value="Register">
+		</form>
+			<h4>{{request.session.validate}}</h4>
+	</div>
+	<div id="login">
+		<h2>Login</h2>
+		<form action="/user/login" method="post">
+			{% csrf_token %}
+			<label>Email: <input name="login_email" type="text" value="{{request.session.loginEmail}}"></label>
+			<label>Password: <input name="login_password" type="password"></label>
+			<input id="login_submit" type="submit" value="Login">
+		</form>
+
+		{% for message in messages %}
+			{% if message.extra_tags == "loginError" %}
+			 <h4>{{message.message}}</h4>
+			{% endif %}
+		{% endfor %}
+		
+	</div>
+
+		
+
+		<p id="belowInfo" >Registered Names and Emails Below:</p>
+
+	{% for user in users%}
+
+		<p>{{user.firstName}}  -  {{user.email}}</p>
+		<a href="{% url 'login:delete' id=user.id %}">Delete</a>
+		<p>******</p>
+
+	{% endfor %}
+
+</body>
+</html>
